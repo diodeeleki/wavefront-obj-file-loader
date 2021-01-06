@@ -30,6 +30,8 @@ class obj_loader::ObjFile_
 public:
 	using ElementType = Type;
 	
+	ObjFile_()noexcept = default;
+	
 	void open(const std::string& obj_path, const std::string& mtl_dir, const std::string& texture_dir)noexcept(false)
 	{
 		try{this->obj_parse_.open(obj_path, mtl_dir, texture_dir);}
