@@ -13,6 +13,7 @@
 #include <cassert>
 #include <array>
 #include <cstdint>
+#include <stdexcept>
 
 namespace obj_loader
 {
@@ -35,13 +36,13 @@ public:
 	void open(const std::string& obj_path, const std::string& mtl_dir, const std::string& texture_dir)noexcept(false)
 	{
 		try{this->obj_parse_.open(obj_path, mtl_dir, texture_dir);}
-		catch(std::exception e){throw e;}
+		catch(std::runtime_error e){throw e;}
 	}
 	
 	ObjFile_(const std::string& obj_path, const std::string& mtl_dir, const std::string& texture_dir)noexcept(false)
 	{
 		try{this->open(obj_path, mtl_dir, texture_dir);}
-		catch(std::exception e){throw e;}
+		catch(std::runtime_error e){throw e;}
 	}
 	
 	/*------------------------------------

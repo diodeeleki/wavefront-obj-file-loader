@@ -1,0 +1,1 @@
+/usr/bin/clang++-10 CMakeFiles/exsample.dir/main.cpp.o -o exsample 

@@ -13,6 +13,7 @@
 #include <fstream>
 #include <array>
 #include <sstream>
+#include <stdexcept>
 
 template<std::floating_point Type> 
 struct obj_loader::ObjFile_<Type>::ObjParse
@@ -49,7 +50,13 @@ struct obj_loader::ObjFile_<Type>::ObjParse
 			if(buff == "mtllib")
 			{
 				ifs >> buff;
-				mtl_loader.open(mtl_dir + buff);
+				try
+				{
+					mtl_loader.open(mtl_dir + buff);
+				}catch(std::runtime_error e)
+				{
+					throw e;
+				}
 			}
 			
 			if(buff == "v")
@@ -110,7 +117,7 @@ struct obj_loader::ObjFile_<Type>::ObjParse
 	ObjParse(const std::string& obj_path, const std::string& mtl_dir, const std::string& texture_dir)noexcept(false)
 	{
 		try{this->open(obj_path, mtl_dir, texture_dir);}
-		catch(std::exception e){throw e;}
+		catch(std::runtime_error e){throw e;}
 	}
 	
 	ObjParse() = default;
